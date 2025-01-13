@@ -144,8 +144,10 @@ def logout():
 header = {'content-type':'application/json','Accept':'text/html'}
 # cate_api_url = "http://127.0.0.1:5000/api/category"
 # prod_api_url = "http://127.0.0.1:5000/api/product"
-cate_api_url = "https://grocery-store-ujwm.onrender.com/api/category"
-prod_api_url = "https://grocery-store-ujwm.onrender.com/api/product"
+# cate_api_url = "https://grocery-store-ujwm.onrender.com/api/category"
+# prod_api_url = "https://grocery-store-ujwm.onrender.com/api/product"
+cate_api_url = "https://grocery-store-mauve.vercel.app/api/category"
+prod_api_url = "https://grocery-store-mauve.vercel.app/api/product"
 
 # ----------------------------Admin Home-------------------------------
 
