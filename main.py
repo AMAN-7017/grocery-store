@@ -59,6 +59,7 @@ class Sales(db.Model):
 	nop = db.Column(db.Integer, nullable=False)
 	date = db.Column(db.String(12), nullable=False)
 
+db.create_all()
 
 @login_manager.user_loader
 def loader_user(user_id):
