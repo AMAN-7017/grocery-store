@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <title>Login</title>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="row">
+            <div class="col-md-6 p-2 d-flex justify-content-center align-items-center">
+                <div class="image">
+                    <img src="/static/images/image7.jpg" alt="image">
+                </div>
+                <div class="position-absolute text-light text-center p-5">
+                    <h3 class="mb-3">Welcome to Grocery Store</h3>
+                    <p>You need to sign in to explore or buy your favorite<br> products and food.If you don't have an account, <br>create account.</p>
+                </div>
+            </div>
+            <div class="right col-md-6">
+                <h1 class="mb-4 mt-4">Login</h1>
+                <form action="/login" method="post" onsubmit="return validation()">
+                    <div class="text-field">
+                        <input class="input1" onkeyup=" validation_email()" type="email" name="email" id="email"
+                            placeholder="Email">
+                        <span class="icon"><i class="bi bi-envelope-at-fill"></i></span>
+                        <small id="email_error">{{email_alert}}</small>                   </div>
+                    <div class="text-field">
+                        <input class="input1" onkeyup=" validation_pass()" type="password" name="password" id="pass"
+                            placeholder="Password">
+                        <span class="icon"><i class="bi bi-lock-fill"></i></span>
+                        <small id="pass_error">{{pass_alert}}</small>                   
+                    </div>
+                    <div class="checkbox">
+                        <input type="checkbox" name="role" value="1">                       
+                        <label>Are you Admin?</label>
+                    </div>
+                    <button type="submit">Login</button>
+                    <p class="mt-3 text-center">Don't have an account? <a href="/register">Register</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<script src="/static/index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+
+</html>

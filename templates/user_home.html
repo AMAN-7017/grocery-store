@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+  <title>Grocery Store</title>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="container-fluid nav-items">
+      <div class="logo">
+        Grocery Store
+      </div>
+      <div class="search-box">
+        <form action="/search/{{user.id}}" method="POST">
+          <input title="Search by product or category" class="search" type="search" placeholder="Search by product or category" name="search">
+          <button title="Search" class="search-btn" type="submit"><i class=" bi fs-5 bi-search"></i></button>
+        </form>
+      </div>
+      <div class="links">
+        <div class="icon"><a title="Cart" href="/cart/{{user.id}}"><i
+              class="bi bi-cart4 me-1 fs-4"></i><span>{{cart|length}}</span></a></div>
+        <div class="icon user"><i  title="{{user.name}}" class="bi bi-person-circle fs-4"></i></div>
+        <div class="user_info">
+          <h1><i class="bi bi-person-circle"></i></abbr></h1>
+          <h5>{{user.name}}</h5>
+          <p>{{user.email}}</p>
+          <a title="Logout" href="/logout"><button>Logout</button></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <div id="home" class="container-fluid ">
+    {% if categories != [] %}
+    {% for category in categories %}
+    <div class="category">
+      <div class="cate_name">
+        <h3>{{category.name}}</h3>
+      </div>
+      <div class="product_all">
+        {% if category.products != [] %}
+        {% for product in category.products %}
+        <div class="product" title="{{product.name}}">
+          <img class="prod_img" src="/static/images/{{product.image}}" alt="Image" loading="lazy">
+          <div class="prod_info">
+            <span class="name">{{product.name}}</span>
+            <span class="price">₹ {{product.price}}.00 / {{product.qnt}}</span>
+            {% if product.mfg_date != "" and product.exp_date != "" %}
+            <span class="mfg">MFG: {{product.mfg_date}}</span>
+            <span class="exp">EXP: {{product.exp_date}}</span>
+            {% endif %}
+          </div>
+          {% if product.nop > 0 %}
+          {% if product.id in loi %}
+          <div class="user_actions">
+            <a>
+              <button class="disabled" title="already added in cart" id="addbtn">
+                <i class="bi bi-cart4 fs-5 me-1"></i>Added
+              </button>
+            </a>
+          </div>
+          {% else %}
+          <div class="user_actions">
+            <a href="/add/product/cart/{{user.id}}/{{product.id}}">
+              <button title="Add to cart" id="addbtn">
+                <i class="bi bi-cart4 fs-5 me-1"></i>Add
+              </button></a>
+          </div>
+          {% endif %}
+          {% else %}
+          <div class="user_actions">
+            <a href=""><button title="{{product.name}} out of stock" class="disabled" disabled>
+              Out of stock</button></a>
+          </div>
+        {% endif %}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="prod_massage">No products available in this category</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="cate_massage">No category available</div>
+    {% endif %}
+  </div>
+
+
+
+
+
+
+  <script src="/static/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    
+}
+
+/* --------------------------------Navbar----------------------------- */
+
+.nav{
+    width: 100%;
+    height: auto;
+    background: #007bff;
+    color: #fff;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, .3);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.nav .nav-items{
+    width: 100%;
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(3,1fr);
+    padding: 5px 20px;
+}
+.nav .logo{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-items .search-box{
+    width: 100%;
+    height: 30px;
+}
+.nav-items .search-box form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.nav-items .search-box .search{
+    width: 90%;
+    border: none;
+    outline: none;
+    border-radius: 5px 0 0 5px;
+    padding-left: 10px;
+}
+.nav-items .search-btn{
+    min-width: 10%;
+    border: none;
+    outline: none;
+    border-radius: 0 5px 5px 0;
+    border: 1px solid #fff;
+    background: #007bff;
+    transition: .2s;
+    color: #fff;
+}
+.nav-items .search-btn:hover{
+    background: #0000ff;
+}
+.nav-items .links{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+.nav-items .links .icon{
+    margin-left: 20px;
+}
+.nav-items .links .icon a{
+    color: #fff;
+    text-decoration: none;
+}
+.nav-items .links .icon .active{
+    text-decoration: underline;
+}
+.nav-items .links .icon a:hover,.icon a:focus{
+    text-decoration: underline;
+}
+.nav-items .links .user{
+    position: relative;
+    cursor: pointer;
+}
+.nav-items .links .user_info {
+    position: absolute;
+    right: 5px;
+    top: 45px;
+    background: #fff;
+    color: black;
+    text-align: center;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 10;
+    box-shadow: 8px 8px 10px 10px rgba(0, 0, 0, .3);
+    min-width: 200px;
+    visibility: hidden;
+    opacity: 0;
+    scale: 0.9;
+    transition: .3s;
+}
+.nav-items .links .show_user_info{
+    visibility: visible;
+    opacity: 1;
+    scale: 1;
+}
+.nav-items .links .user_info p{
+    margin-top: 20px;
+    color: gray;
+}
+.nav-items .links .user_info button{
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #007bff;
+    padding: 4px 12px;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: .2s;
+}
+.nav-items .links .user_info button:hover{
+    background: #0000ff;
+}
+
+@media only screen and (max-width: 950px){
+    .nav .nav-items{
+        grid-template-columns: auto auto;
+        padding: 5px 10px;
+    }
+    .nav-items .search-box{
+        grid-column: 1/span 2;
+        grid-row: 2;
+        margin-top: 5px;
+    }
+
+}
+@media only screen and (max-width: 500px){
+    .nav .nav-items{
+        padding: 5px;
+    }
+    .nav-items .links .icon{
+        margin-left: 12px;
+        font-size: 13px;
+    }
+    .nav .logo{
+        font-size: 1.1rem;
+    }
+
+}
+
+
+
+/* ----------------------------Cart-------------------------- */
+
+
+.cart_item{
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 15px;
+    border: 1px solid lightgray;
+    transition: .2s;
+}
+.cart_item:hover{
+    box-shadow: 3px 1px 10px 1px rgba(0, 0, 0, .1);
+}
+.cart_item .cart_info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart_item .cart_info .image img{
+    width: 4rem;
+    height: 4rem;
+}
+
+.cart_info .prod_cate{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 20%;
+}
+.cart_info .prod_cate .prod_name{
+    font-size: clamp(14px, 1.5vw, 26px);
+}
+.cart_info .prod_cate .cate_name{
+    font-size: clamp(13px, 1.2vw, 22px);
+    color: gray;
+    word-wrap: none;
+}
+.cart_info .admin_actions a button{
+    border: none;
+    outline: none;
+    color: white;
+    background: #007bff;
+    border-radius: 5px;
+    width: 4.5rem;
+    font-size: 14px;
+    height: 2rem;
+    transition: .2s;
+}
+.cart_info .admin_actions a button:hover{
+    background: #0000ff;
+}
+.cart_info .price{
+    font-size: clamp(13px, 1.5vw, 22px);
+}
+.cart_item .add-btn{
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    padding: 3px 15px;
+}
+.cart_item .add-btn.disabled{
+    font-size: clamp(14px, 1vw, 18px);
+    border: none;
+    outline: none;
+    background: #89c0fb;
+    color: #fff;
+    border-radius: 5px;
+    padding: 3px 15px;
+}
+.cart_item .add-btn.disabled:hover{
+    background: #89c0fb;
+}
+.cart_item .add-btn:hover{
+    background: #0000ff;
+}
+
+.cart_info .prod_num .minus-btn,.plus-btn{
+    border: none;
+    outline: none;
+    background: transparent;
+    border-radius: 50%;
+    transition: .2s;
+    border: 1px solid lightgray;
+}
+
+.cart_info .prod_num .minus-btn i,.plus-btn i{
+    font-size: 15px;
+}
+
+.cart_info .prod_num .minus-btn.disabled,.plus-btn.disabled{
+    border: none;
+    outline: none;
+    background: transparent;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+}
+.cart_info .prod_num .minus-btn:hover,
+.cart_info .prod_num .plus-btn:hover{
+    background: gainsboro;
+}
+.cart_info .prod_num .minus-btn:focus,
+.cart_info .prod_num .plus-btn:focus{
+    background: rgb(189, 189, 189);
+}
+.cart_info .prod_num .num{
+    background: transparent;
+    cursor: default;
+    font-size: 18px;
+}
+
+.cart_info .del-btn i{
+    color: gray;
+    font-size: clamp(15px, 1vw, 18px);
+}
+.cart_info .del-btn i:hover{
+    color: black;
+}
+
+.buy-info{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px 0;
+}
+.buy-info .total-amount{
+    font-size: clamp(18px, 2vw, 28px);
+}
+.buy-info .total-amount .nop{
+    font-size: clamp(14px, 1.3vw, 20px);
+    color: gray;
+}
+
+.buy-info .buy-btn button{
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+    background: #007bff;
+    transition: .3s;
+    padding: 8px 30px;
+    font-size: clamp(14px, 1.6vw, 28px);
+}
+.buy-info .buy-btn button:hover{
+    background: #0000ff;
+}
+
+.massage{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 22px;
+    color: gray;
+}
+
+@media only screen and (max-width: 500px){
+    .cart_item .cart_info .image img{
+        width: 2rem;
+        height: 2rem;
+    }
+    .cart_info .prod_num .num{
+        font-size: 16px;
+    }
+    .cart_info .admin_actions a button{
+        width: 4rem;
+        font-size: 12px;
+        height: 1.8rem;
+    }
+    .cart_item .add-btn{
+        font-size: 15px;
+        padding: 2px 12px;
+    }
+}

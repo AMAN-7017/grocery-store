@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="container-fluid nav-items">
+      <div class="logo">
+        Grocery Store
+      </div>
+      <div class="search-box">
+        <form action="/admin_search" method="POST">
+          <input class="search" type="search" placeholder="Search by product or category" name="search">
+          <button class="search-btn" type="submit"><i class=" bi fs-5 bi-search"></i></button>
+        </form>
+      </div>
+      <div class="links">
+        <div class="icon"><a href="/summary">Summary</a></div>
+        <div class="icon"><a href="/add/category"><i class="bi bi-plus-lg"></i>Category</a></div>
+        <div class="icon"><a href="/add/product"><i class="bi bi-plus-lg"></i>Product</a></div>
+        <div class="icon"><a href="/logout">Logout</a></div>
+      </div>
+    </div>
+  </nav>
+  
+
+  <div class="container-fluid">
+    {% if categories != [] %}
+    {% for category in categories %}
+    <div class="category bg-light">
+      <div class="cate_info">
+        <a title="Update category"  href="/update/category/{{category.id}}"><i class="bi bi-pencil-square"></i></a>
+        <h3>{{category.name}}</h3>
+        <a  title="Delete category" onclick="alert_cate()" href="/del/category/{{category.id}}"><i class="bi bi-x-lg"></i></a>
+      </div>
+      <div class="product_all">
+        {% if category.products != [] %}
+        {% for product in category.products %}
+        <div class="product">
+          <img class="prod_img" src="static/images/{{product.image}}" alt="Image" loading="lazy">
+          <div class="prod_info">
+            <span class="name">{{product.name}}</span>
+            <span class="price">₹ {{product.price}}.00 / {{product.qnt}}</span>
+            {% if product.mfg_date != "" and product.exp_date != "" %}
+            <span class="mfg">MFG: {{product.mfg_date}}</span>
+            <span class="exp">EXP: {{product.exp_date}}</span>
+            {% endif %}
+            {% if product.nop != 0 %}
+            <span class="stock text-success">Stock - {{product.nop}}</span>
+            {% else %}
+            <span class="stock text-danger text-center">Out of stock</span>
+            {% endif %}
+          </div>
+          <div class="admin_actions">
+            <a title="Delete product" onclick="alert_prod()" href="/del/product/{{product.id}}"><button><i class="bi bi-trash"></i>Delete</button></a>
+            <a title="Update product" href="/update/product/{{product.id}}"><button><i class="bi bi-pencil-square"></i>Edit</button></a>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="prod_massage">No products available in this category</div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="cate_massage">No category available</div>
+    {% endif %}
+  </div>
+
+
+  <script src="/static/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
