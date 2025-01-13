@@ -60,9 +60,7 @@ class Sales(db.Model):
 	date = db.Column(db.String(12), nullable=False)
 
 db.create_all()
-admin = Users(name="MOHD AMAN",email="mohdaman123@gmail.com",password="mohdaman123",role="Admin")
-db.session.add(admin)
-db.session.commit()
+
 
 
 @login_manager.user_loader
